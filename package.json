@@ -1,0 +1,33 @@
+{
+  "name": "wanted-pre-onboarding-backend",
+  "version": "1.0.0",
+  "description": "8월 원티드 프리온보딩 인턴십(백엔드) 사전 과제",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jangjiyu/wanted-pre-onboarding-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jangjiyu/wanted-pre-onboarding-backend/issues"
+  },
+  "homepage": "https://github.com/jangjiyu/wanted-pre-onboarding-backend#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.1",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.6.0",
+    "sequelize": "^6.32.1",
+    "sequelize-cli": "^6.6.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
