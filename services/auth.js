@@ -5,8 +5,24 @@ const AuthRepository = require("../repositories/auth");
 class AuthService {
   authRepository = new AuthRepository();
 
+  // TODO: 유효성 검사 따로 빼서 중복 줄이기(controller단에서 처리해버리기)
+  // 유효성 검사 정규식
+  // 이메일 조건: @ 포함
+  emailRegex = /@/;
+  // 비밀번호 조건: 8자 이상
+  passwordRegex = /.{8,}/;
+
   // 회원가입 [POST] /auth/join
   join = async (email, password) => {
+    // 이메일 유효성 검사
+    if (!this.emailRegex.test(email)) {
+      throw new Error("이메일 형식이 올바르지 않습니다.");
+    }
+    // 비밀번호 유효성 검사
+    if (!this.passwordRegex.test(password)) {
+      throw new Error("비밀번호는 8자 이상이어야 합니다.");
+    }
+
     const userData = await this.authRepository.getUserDataByEmail(email);
 
     if (userData) {
@@ -23,6 +39,15 @@ class AuthService {
 
   // 로그인 [POST] /auth/login
   login = async (email, password) => {
+    // 이메일 유효성 검사
+    if (!this.emailRegex.test(email)) {
+      throw new Error("이메일 형식이 올바르지 않습니다.");
+    }
+    // 비밀번호 유효성 검사
+    if (!this.passwordRegex.test(password)) {
+      throw new Error("비밀번호는 8자 이상이어야 합니다.");
+    }
+
     const userData = await this.authRepository.getUserDataByEmail(email);
 
     if (!userData) {
