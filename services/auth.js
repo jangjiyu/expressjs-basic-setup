@@ -1,4 +1,5 @@
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const AuthRepository = require("../repositories/auth");
 
 class AuthService {
@@ -34,8 +35,9 @@ class AuthService {
       throw new Error("아이디나 비번이 올바르지 않습니다.");
     }
 
-    // TODO: jwt 토큰 발급
-    // const token =
+    // jwt 토큰 발급
+    const tokenPayload = { id: userData.id };
+    const token = jwt.sign(tokenPayload, process.env.JWT_SECRET, { expiresIn: "7d" });
 
     return { message: "로그인 성공", token };
   };
