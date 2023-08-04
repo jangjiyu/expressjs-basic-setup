@@ -1,8 +1,8 @@
 const express = require("express");
 const morgan = require("morgan");
+const router = require("./routers");
 const { sequelize } = require("./models");
-const dotenv = require("dotenv");
-dotenv.config();
+require("dotenv").config();
 
 const app = express();
 
@@ -19,9 +19,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.get("/ping", (req, res) => {
-  res.send("pong");
-});
+app.use("/", router);
 
 app.listen(app.get("port"), () => {
   console.log(app.get("port"), "번 포트에서 대기중", "\r\n http://localhost:3001/ping");
