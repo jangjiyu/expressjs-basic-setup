@@ -7,7 +7,7 @@ const postController = new PostController();
 const authMiddleware = require("../middlewares/authMiddleware");
 const wrapAsyncMiddleware = require("../middlewares/wrapAsyncMiddleware");
 
-// [GET] /post
+// [GET] /post?page=1&limit=10&offset=0
 router.get("/", wrapAsyncMiddleware(postController.getPosts));
 
 // [GET] /post/:id
