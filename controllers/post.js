@@ -5,6 +5,7 @@ class PostController {
 
   getPosts = async (req, res) => {
     // TODO: pagination
+    // TODO: query 유효성 검사
     const { page } = req.query;
     const limit = 10;
     const offset = 0 + (page - 1) * limit;
@@ -19,6 +20,7 @@ class PostController {
   };
 
   getPost = async (req, res) => {
+    // TODO: 유효성 검사
     const { id } = req.params;
 
     const post = await this.postService.getPost(id);
@@ -27,6 +29,7 @@ class PostController {
   };
 
   createPost = async (req, res) => {
+    // TODO: 유효성 검사
     const { id: userId } = res.locals.user;
     const { title, content } = req.body;
 
@@ -36,6 +39,7 @@ class PostController {
   };
 
   updatePost = async (req, res) => {
+    // TODO: 유효성 검사
     const { id: userId } = res.locals.user;
     const { id } = req.params;
     const { title, content } = req.body;
@@ -46,6 +50,7 @@ class PostController {
   };
 
   deletePost = async (req, res) => {
+    // TODO: 유효성 검사
     const { id: userId } = res.locals.user;
     const { id } = req.params;
 
