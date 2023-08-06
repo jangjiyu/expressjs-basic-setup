@@ -36,7 +36,7 @@ class PostService {
       throw new Error("게시글을 수정할 권한이 없습니다.");
     }
 
-    await this.postRepository.updatePost(userId, id, title, content);
+    await this.postRepository.updatePost(id, title, content);
 
     return { message: "게시글이 성공적으로 수정되었습니다." };
   };
@@ -52,8 +52,10 @@ class PostService {
       throw new Error("게시글을 삭제할 권한이 없습니다.");
     }
 
-    await this.postRepository.deletePost(userId, id);
+    await this.postRepository.deletePost(id);
 
     return { message: "게시글이 성공적으로 삭제되었습니다." };
   };
 }
+
+module.exports = PostService;
