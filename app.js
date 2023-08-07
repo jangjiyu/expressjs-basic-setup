@@ -2,6 +2,7 @@ const express = require("express");
 const morgan = require("morgan");
 const router = require("./routers");
 const { sequelize } = require("./models");
+const { errorHandler } = require("./middlewares/errorHandler");
 require("dotenv").config();
 
 const app = express();
@@ -20,6 +21,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use("/", router);
+app.use(errorHandler);
 
 app.listen(app.get("port"), () => {
   console.log(app.get("port"), "번 포트에서 대기중", "\r\n http://localhost:3001/ping");
