@@ -17,9 +17,9 @@ router.get("/:id", wrapAsyncMiddleware(postController.getPost));
 router.post("/", authMiddleware, wrapAsyncMiddleware(postController.createPost));
 
 // [PUT] /post/:id
-router.post("/:id", authMiddleware, wrapAsyncMiddleware(postController.updatePost));
+router.put("/:id", authMiddleware, wrapAsyncMiddleware(postController.updatePost));
 
 // [DELETE] /post/:id
-router.post("/:id", authMiddleware, wrapAsyncMiddleware(postController.deletePost));
+router.delete("/:id", authMiddleware, wrapAsyncMiddleware(postController.deletePost));
 
 module.exports = router;
