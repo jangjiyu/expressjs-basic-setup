@@ -1,4 +1,5 @@
 const PostRepository = require("../repositories/post");
+const CustomError = require("../utils/customError");
 
 class PostService {
   postRepository = new PostRepository();
@@ -13,7 +14,7 @@ class PostService {
     const post = await this.postRepository.getPost(id);
 
     if (!post) {
-      throw new Error("게시글이 존재하지 않습니다.");
+      throw new CustomError("POST_NOT_FOUND");
     }
 
     return post;
@@ -29,11 +30,11 @@ class PostService {
     const postInfo = await this.postRepository.findPostById(id);
 
     if (!postInfo) {
-      throw new Error("게시글이 존재하지 않습니다.");
+      throw new CustomError("POST_NOT_FOUND");
     }
 
     if (postInfo.userId !== userId) {
-      throw new Error("게시글을 수정할 권한이 없습니다.");
+      throw new CustomError("FORBIDDEN");
     }
 
     await this.postRepository.updatePost(id, title, content);
@@ -45,11 +46,11 @@ class PostService {
     const postInfo = await this.postRepository.findPostById(id);
 
     if (!postInfo) {
-      throw new Error("게시글이 존재하지 않습니다.");
+      throw new CustomError("POST_NOT_FOUND");
     }
 
     if (postInfo.userId !== userId) {
-      throw new Error("게시글을 삭제할 권한이 없습니다.");
+      throw new CustomError("FORBIDDEN");
     }
 
     await this.postRepository.deletePost(id);

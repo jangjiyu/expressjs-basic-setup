@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const { User } = require("../models");
+const CustomError = require("../utils/customError");
 
 module.exports = (req, res, next) => {
   try {
@@ -7,7 +8,7 @@ module.exports = (req, res, next) => {
     const [authType, authToken] = (authorization || "").split(" ");
 
     if (authType !== "Bearer") {
-      throw new Error("로그인 후 이용해주세요.");
+      throw new CustomError("UNAUTHORIZED");
     }
 
     jwt.verify(
@@ -17,7 +18,7 @@ module.exports = (req, res, next) => {
       async (error, decoded) => {
         try {
           if (error) {
-            throw new Error("이용에 문제가 있습니다. 관리자에게 문의해주세요.");
+            throw new CustomError("UNAUTHORIZED");
           }
 
           const user = await User.findOne({
