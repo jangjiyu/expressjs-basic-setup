@@ -6,7 +6,7 @@ class AuthController {
   join = async (req, res) => {
     const { email, password } = req.body;
 
-    const result = await this.authService.join({ email, password });
+    const result = await this.authService.join(email, password);
 
     res.status(200).json(result);
   };
@@ -14,7 +14,7 @@ class AuthController {
   login = async (req, res) => {
     const { email, password } = req.body;
 
-    const result = await this.authService.login({ email, password });
+    const result = await this.authService.login(email, password);
 
     res.status(200).json(result);
   };

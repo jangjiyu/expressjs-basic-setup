@@ -10,8 +10,8 @@ class PostController {
     const limit = 10;
     const offset = 0 + (page - 1) * limit;
 
-    if (pageNum > 1) {
-      offset = 10 * (pageNum - 1);
+    if (page > 1) {
+      offset = 10 * (page - 1);
     }
 
     const posts = await this.postService.getPosts(limit, offset);
