@@ -36,7 +36,7 @@ class AuthService {
 
   login = async (email, password) => {
     if (!this.emailRegex.test(email)) {
-      throw CustomError("INVALID_INPUT_EMAIL");
+      throw new CustomError("INVALID_INPUT_EMAIL");
     }
     if (!this.passwordRegex.test(password)) {
       throw new CustomError("INVALID_INPUT_PASSWORD");
