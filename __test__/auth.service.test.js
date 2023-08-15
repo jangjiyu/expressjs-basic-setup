@@ -4,12 +4,9 @@ const { User } = require("../models");
 const { plainToInstance } = require("class-transformer");
 const CustomError = require("../utils/customError");
 
-jest.mock("../repositories/auth");
-
 describe("AuthService", () => {
   const authService = new AuthService();
-  const authRepository = new AuthRepository();
-  console.log(111, authRepository);
+  const authRepository = jest.mocked(new AuthRepository());
 
   Object.assign(authService, { authRepository });
 
@@ -68,17 +65,12 @@ describe("AuthService", () => {
 
     it("비밀번호가 일치하지 않으면 INVALID_USER_INFO 에러를 던진다.", async () => {
       const email = "valid@Eamil.com";
-      const password = "invalidPassword";
+      const password = "validPassword";
 
       authRepository.getUserDataByEmail = jest.fn();
       authRepository.getUserDataByEmail.mockResolvedValue(
-        plainToInstance(User, { id: 1, email, password: "validPassword" })
+        plainToInstance(User, { id: 1, email, password: "invalidPassword" })
       );
-
-      jest.mock("bcrypt", () => ({
-        // hash: jest.fn(() => Promise.resolve("hashed_password")),
-        compare: jest.fn(() => Promise.resolve(false)),
-      }));
 
       expect.assertions(1);
       await expect(() => authService.login(email, password)).rejects.toThrow(new CustomError("INVALID_USER_INFO"));

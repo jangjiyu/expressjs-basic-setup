@@ -1,14 +1,12 @@
 const PostService = require("../services/post");
 const PostRepository = require("../repositories/post");
-const { Post, User } = require("../models");
+const { Post } = require("../models");
 const { plainToInstance } = require("class-transformer");
 const CustomError = require("../utils/customError");
 
-jest.mock("../repositories/post");
-
 describe("PostService", () => {
   const postService = new PostService();
-  const postRepository = new PostRepository();
+  const postRepository = jest.mocked(new PostRepository());
 
   Object.assign(postService, { postRepository });
 
