@@ -1,12 +1,11 @@
 const PostService = require("../services/post");
+const validator = require("../utils/validator");
 
 class PostController {
   postService = new PostService();
 
   getPosts = async (req, res) => {
-    // TODO: pagination
-    // TODO: query 유효성 검사
-    const { page } = req.query;
+    const { page } = await validator.getPostsSchema.validateAsync(req.query);
     const limit = 10;
     const offset = 0 + (page - 1) * limit;
 
@@ -20,8 +19,7 @@ class PostController {
   };
 
   getPost = async (req, res) => {
-    // TODO: 유효성 검사
-    const { id } = req.params;
+    const { id } = await validator.getPostSchema.validateAsync(req.params);
 
     const post = await this.postService.getPost(id);
 
@@ -29,9 +27,8 @@ class PostController {
   };
 
   createPost = async (req, res) => {
-    // TODO: 유효성 검사
     const { id: userId } = res.locals.user;
-    const { title, content } = req.body;
+    const { title, content } = await validator.createPostSchema.validateAsync(req.body);
 
     const result = await this.postService.createPost(userId, title, content);
 
@@ -39,10 +36,9 @@ class PostController {
   };
 
   updatePost = async (req, res) => {
-    // TODO: 유효성 검사
     const { id: userId } = res.locals.user;
-    const { id } = req.params;
-    const { title, content } = req.body;
+    const { id } = await validator.updatePostParamsSchema.validateAsync(req.params);
+    const { title, content } = await validator.updatePostBodySchema.validateAsync(req.body);
 
     const result = await this.postService.updatePost(userId, id, title, content);
 
@@ -50,9 +46,8 @@ class PostController {
   };
 
   deletePost = async (req, res) => {
-    // TODO: 유효성 검사
     const { id: userId } = res.locals.user;
-    const { id } = req.params;
+    const { id } = await validator.deletePostSchema.validateAsync(req.params);
 
     const result = await this.postService.deletePost(userId, id);
 
