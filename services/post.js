@@ -13,9 +13,7 @@ class PostService {
   getPost = async id => {
     const post = await this.postRepository.getPost(id);
 
-    if (!post) {
-      throw new CustomError("POST_NOT_FOUND");
-    }
+    if (!post) throw new CustomError("POST_NOT_FOUND");
 
     return post;
   };
@@ -29,13 +27,9 @@ class PostService {
   updatePost = async (userId, id, title, content) => {
     const postInfo = await this.postRepository.findPostById(id);
 
-    if (!postInfo) {
-      throw new CustomError("POST_NOT_FOUND");
-    }
+    if (!postInfo) throw new CustomError("POST_NOT_FOUND");
 
-    if (postInfo.userId !== userId) {
-      throw new CustomError("FORBIDDEN");
-    }
+    if (postInfo.userId !== userId) throw new CustomError("FORBIDDEN");
 
     await this.postRepository.updatePost(id, title, content);
 
@@ -45,13 +39,9 @@ class PostService {
   deletePost = async (userId, id) => {
     const postInfo = await this.postRepository.findPostById(id);
 
-    if (!postInfo) {
-      throw new CustomError("POST_NOT_FOUND");
-    }
+    if (!postInfo) throw new CustomError("POST_NOT_FOUND");
 
-    if (postInfo.userId !== userId) {
-      throw new CustomError("FORBIDDEN");
-    }
+    if (postInfo.userId !== userId) throw new CustomError("FORBIDDEN");
 
     await this.postRepository.deletePost(id);
 

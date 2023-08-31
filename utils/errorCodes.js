@@ -11,6 +11,10 @@ module.exports = {
     statusCode: 400,
     message: "비밀번호는 8자 이상이어야 합니다.",
   },
+  PASSWORD_MISMATCH: {
+    statusCode: 400,
+    message: "비밀번호가 일치하지 않습니다.",
+  },
   DUPLICATE_EMAIL: {
     statusCode: 400,
     message: "이미 가입된 이메일입니다. 로그인을 해주세요.",
