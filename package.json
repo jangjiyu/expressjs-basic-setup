@@ -1,7 +1,7 @@
 {
-  "name": "wanted-pre-onboarding-backend",
+  "name": "expressjs-basic-setup",
   "version": "1.0.0",
-  "description": "express basic setup",
+  "description": "the basic setup for express, typescript, sequelize(mysql)",
   "main": "app.ts",
   "scripts": {
     "build": "tsc",
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jangjiyu/wanted-pre-onboarding-backend.git"
+    "url": "git+https://github.com/jangjiyu/expressjs-basic-setup"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jangjiyu/wanted-pre-onboarding-backend/issues"
+    "url": "https://github.com/jangjiyu/expressjs-basic-setup/issues"
   },
-  "homepage": "https://github.com/jangjiyu/wanted-pre-onboarding-backend#readme",
+  "homepage": "https://github.com/jangjiyu/expressjs-basic-setup#readme",
   "dependencies": {
     "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
@@ -50,6 +50,7 @@
     "@types/sequelize": "^4.28.20",
     "@types/slack-node": "^0.1.7",
     "nodemon": "^3.0.1",
-    "prettier": "^3.2.5"
+    "prettier": "^3.2.5",
+    "ts-node": "^10.9.2"
   }
 }
