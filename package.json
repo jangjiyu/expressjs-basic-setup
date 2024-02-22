@@ -1,11 +1,14 @@
 {
   "name": "wanted-pre-onboarding-backend",
   "version": "1.0.0",
-  "description": "8월 원티드 프리온보딩 인턴십(백엔드) 사전 과제",
-  "main": "app.js",
+  "description": "express basic setup",
+  "main": "app.ts",
   "scripts": {
-    "start": "nodemon app.js",
-    "test": "jest"
+    "build": "tsc",
+    "start:dev": "tsc-watch --onSuccess \"node dist/app.js\"",
+    "prestart": "npm run build",
+    "start": "node dist/app.js",
+    "test": "jest --runInBand"
   },
   "repository": {
     "type": "git",
@@ -19,18 +22,34 @@
   "homepage": "https://github.com/jangjiyu/wanted-pre-onboarding-backend#readme",
   "dependencies": {
     "bcrypt": "^5.1.0",
+    "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "jest": "^29.7.0",
     "joi": "^17.10.0",
     "jsonwebtoken": "^9.0.1",
     "morgan": "^1.10.0",
     "mysql2": "^3.6.0",
     "sequelize": "^6.32.1",
-    "sequelize-cli": "^6.6.1"
+    "sequelize-cli": "^6.6.1",
+    "slack-node": "^0.1.8",
+    "ts-jest": "^29.1.2",
+    "tsc-watch": "^6.0.4",
+    "typescript": "^5.1.6"
   },
   "devDependencies": {
-    "class-transformer": "^0.5.1",
-    "jest": "^29.6.2",
-    "nodemon": "^3.0.1"
+    "@types/bcrypt": "^5.0.2",
+    "@types/cors": "^2.8.17",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.12",
+    "@types/joi": "^17.2.3",
+    "@types/jsonwebtoken": "^9.0.5",
+    "@types/morgan": "^1.9.9",
+    "@types/node": "^20.11.19",
+    "@types/sequelize": "^4.28.20",
+    "@types/slack-node": "^0.1.7",
+    "nodemon": "^3.0.1",
+    "prettier": "^3.2.5"
   }
 }
